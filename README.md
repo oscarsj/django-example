@@ -3,8 +3,8 @@ Django on OpenShift Express
 
 This git repository helps you get up and running quickly w/ a Django installation
 on OpenShift Express.  The Django project name used in this repo is 'openshift'
-but you can feel free to change it.  Right now the backend is sqlite3 and the
-database runtime is @ $OPENSHIFT_DATA_DIR/sqlite3.db.
+but you can feel free to change it.  <strike>Right now the backend is sqlite3 and the
+database runtime is @ $OPENSHIFT_DATA_DIR/sqlite3.db.</strike>Right now the backend is MySQL.
 
 When you push this application up for the first time, the sqlite database is
 copied from wsgi/openshift/sqlite3.db.  This is the stock database that is created
@@ -39,7 +39,7 @@ Add PHPMyAdmin service
 Add this upstream seambooking repo
 
     cd django
-    ~~git remote add upstream -m master git://github.com/openshift/django-example.git~~
+    <strike>git remote add upstream -m master git://github.com/openshift/django-example.git</strike>
     git remote add upstream -m master git://github.com/drivard/django-example.git
     git pull -s recursive -X theirs upstream master
     
