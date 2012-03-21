@@ -6,6 +6,16 @@ import os
 ON_OPENSHIFT = False
 if os.environ.has_key('OPENSHIFT_REPO_DIR'):
     ON_OPENSHIFT = True
+if os.environ.has_key('OPENSHIFT_APP_NAME'):
+    DB_NAME = os.environ['OPENSHIFT_APP_NAME']
+if os.environ.has_key('OPENSHIFT_DB_USERNAME'):
+    DB_USER = os.environ['OPENSHIFT_DB_USERNAME']
+if os.environ.has_key('OPENSHIFT_DB_PASSWORD'):
+    DB_PASSWD = os.environ['OPENSHIFT_DB_PASSWORD']
+if os.environ.has_key('OPENSHIFT_DB_HOST'):
+    DB_HOST = os.environ['OPENSHIFT_DB_HOST']
+if os.environ.has_key('OPENSHIFT_DB_PORT'):
+    DB_PORT = os.environ['OPENSHIFT_DB_PORT']
 
 PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -22,12 +32,12 @@ if ON_OPENSHIFT:
     # with rhc app cartridge add (see /README in this git repo)
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': os.path.join(os.environ['OPENSHIFT_DATA_DIR'], 'sqlite3.db'),  # Or path to database file if using sqlite3.
-            'USER': '',                      # Not used with sqlite3.
-            'PASSWORD': '',                  # Not used with sqlite3.
-            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+            'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': DB_NAME,               # Or path to database file if using sqlite3.
+            'USER': DB_USER,               # Not used with sqlite3.
+            'PASSWORD': DB_PASSWD,         # Not used with sqlite3.
+            'HOST': DB_HOST,               # Set to empty string for localhost. Not used with sqlite3.
+            'PORT': DB_PORT,               # Set to empty string for default. Not used with sqlite3.
         }
     }
 else:
