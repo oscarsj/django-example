@@ -28,17 +28,48 @@ Create a python-2.6 application
 
     rhc app create -a django -t python-2.6
 
+Add MySQL Database service
+
+    rhc-ctl-app -a django -e add-mysql-5.1
+
+Add PHPMyAdmin service
+
+    rhc-ctl-app -a django -e add-phpmyadmin-3.4
+
 Add this upstream seambooking repo
 
     cd django
-    git remote add upstream -m master git://github.com/openshift/django-example.git
+    ~~git remote add upstream -m master git://github.com/openshift/django-example.git~~
+    git remote add upstream -m master git://github.com/drivard/django-example.git
     git pull -s recursive -X theirs upstream master
     
 Then push the repo upstream
 
     git push
 
-That's it, you can now checkout your application at (default admin account is admin/admin):
+Create the Django admin user
+
+Find your openshift app UID
+
+    rhc domain
+
+Connect through ssh to your app
+
+    ssh $app_uid@django-$yournamespace.rhcloud.com
+
+Get in the app directory
+
+    cd django/repo/wsgi/openshift
+
+Export the python egg cache directory
+
+    export PYTHON_EGG_CACHE=$OPENSHIFT_APP_DIR/virtenv/lib/python-2.6
+
+Create the admin user
+
+    ../../../../virtenv/bin/python ./manage.py createsuperuser
+
+That's it, you can now checkout your application at (Using the user you just created.):
 
     http://django-$yournamespace.rhcloud.com
 
