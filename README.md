@@ -47,13 +47,13 @@ Then push the repo upstream
 
 Create the Django admin user
 
-Find your openshift app UID
+Find your openshift app UUID
 
     rhc domain
 
 Connect through ssh to your app
 
-    ssh $app_uid@django-$yournamespace.rhcloud.com
+    ssh $uuid@django-$yournamespace.rhcloud.com
 
 Get in the app directory
 
