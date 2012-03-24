@@ -38,7 +38,7 @@ Add PHPMyAdmin service
 Add this upstream seambooking repo
 
     cd django
-    git remote add upstream -m master git://github.com/drivard/django-example.git
+    git remote add upstream -m master git@github.com:drivard/openshift-django-mysql.git
     git pull -s recursive -X theirs upstream master
     
 Then push the repo upstream
