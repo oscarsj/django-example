@@ -5,8 +5,8 @@
 # could be python, php, ruby, etc.
 
 # Activate VirtualEnv in order to use the correct libraries
-# export PYTHON_EGG_CACHE=$OPENSHIFT_APP_DIR/virtenv/lib/python-2.6
-# source $OPENSHIFT_APP_DIR/virtenv/bin/activate
+# export PYTHON_EGG_CACHE=$OPENSHIFT_GEAR_DIR/virtenv/lib/python-2.6
+# source $OPENSHIFT_GEAR_DIR/virtenv/bin/activate
 
 # if [ ! -f $OPENSHIFT_DATA_DIR/sqlite3.db ]
 # then

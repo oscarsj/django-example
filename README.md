@@ -61,7 +61,7 @@ Get in the app directory
 
 Export the python egg cache directory
 
-    export PYTHON_EGG_CACHE=$OPENSHIFT_APP_DIR/virtenv/lib/python-2.6
+    export PYTHON_EGG_CACHE=$OPENSHIFT_GEAR_DIR/virtenv/lib/python-2.6
 
 Create the admin user
 
