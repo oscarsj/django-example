@@ -1,6 +1,7 @@
 
-Django on OpenShift
-===================
+This git repository helps you get up and running quickly w/ a Django installation
+on OpenShift Express.  The Django project name used in this repo is 'openshift'
+but you can feel free to change it. Now the backend is MySQL.
 
 This git repository helps you get up and running quickly w/ a Django
 installation on OpenShift.  The Django project name used in this repo
@@ -37,10 +38,18 @@ Create a python-2.6 application
 
     rhc app create -a django -t python-2.6
 
-Add this upstream repo
+Add MySQL Database service
+
+    rhc-ctl-app -a django -e add-mysql-5.1
+
+Add PHPMyAdmin service
+
+    rhc-ctl-app -a django -e add-phpmyadmin-3.4
+
+Add this upstream seambooking repo
 
     cd django
-    git remote add upstream -m master git://github.com/openshift/django-example.git
+    git remote add upstream -m master git@github.com:drivard/openshift-django-mysql.git
     git pull -s recursive -X theirs upstream master
 
 Then push the repo upstream
@@ -53,6 +62,28 @@ Then push the repo upstream
   administering your Django app. This is the only time the password
   will be displayed, so be sure to save it somewhere!
 
-That's it, you can now checkout your application at (default admin account is admin/admin):
+Create the Django admin user
+
+Find your openshift app UUID
+
+    rhc domain
+
+Connect through ssh to your app
+
+    ssh $uuid@django-$yournamespace.rhcloud.com
+
+Get in the app directory
+
+    cd django/repo/wsgi/openshift
+
+Export the python egg cache directory
+
+    export PYTHON_EGG_CACHE=$OPENSHIFT_GEAR_DIR/virtenv/lib/python-2.6
+
+Create the admin user
+
+    ../../../../virtenv/bin/python ./manage.py createsuperuser
+
+That's it, you can now checkout your application at (Using the user you just created.):
 
     http://django-$yournamespace.rhcloud.com
